@@ -75,25 +75,25 @@ jobs:
       - name: Build data structures
         run: |
           python processGeoIpCsv.py
-      - name: Get currently published data
-        run: |
-          mkdir old
-          cd old
-          npm init -y
-          npm install hivelight-fast-geoip
-      - name: Compare new and old data
-        id: compare
-        run: |
-          if ! diff -qrN ./data ./old/node_modules/hivelight-fast-geoip/data; then
-            # echo "::set-output name=changed::true"
-            echo "{changed}={true}" >> $GITHUB_OUTPUT
-            git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-            git config user.name "$GITHUB_ACTOR"
-            npm version patch
-          else
-            # echo "::set-output name=changed::false"
-            echo "{changed}={false}" >> $GITHUB_OUTPUT
-          fi
+      # - name: Get currently published data
+      #   run: |
+      #     mkdir old
+      #     cd old
+      #     npm init -y
+      #     npm install hivelight-fast-geoip
+      # - name: Compare new and old data
+      #   id: compare
+      #   run: |
+      #     if ! diff -qrN ./data ./old/node_modules/hivelight-fast-geoip/data; then
+      #       # echo "::set-output name=changed::true"
+      #       echo "{changed}={true}" >> $GITHUB_OUTPUT
+      #       git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      #       git config user.name "$GITHUB_ACTOR"
+      #       npm version patch
+      #     else
+      #       # echo "::set-output name=changed::false"
+      #       echo "{changed}={false}" >> $GITHUB_OUTPUT
+      #     fi
       - run: npm publish
         if: github.event_name == 'push' || ( steps.compare.outputs.changed == 'true' && github.event_name == 'schedule' )
         env:
