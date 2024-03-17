@@ -1,6 +1,6 @@
 import urllib.request, os, zipfile, glob, shutil
 import processGeoIpCsv as geoip
-from base64 import b64encode
+import base64
 
 ZIP_FILENAME = "geolite.zip"
 TEMPORAL_EXTRACTED_DIR = "geoip"
@@ -16,8 +16,8 @@ username = os.environ["ACCOUNT_ID"]
 password = os.environ["MAXMIND_LICENSE_KEY"]
 
 # Encode username and password in base64
-credentials = f"{username}:{password}".encode('ascii')
-base64_credentials = b64encode(credentials).decode('ascii')
+credentials = f"{username}:{password}"
+base64_credentials = base64.b64encode(credentials.encode("utf-8"))
 
 # URL with basic auth
 url = f"https://download.maxmind.com/geoip/databases/GeoLite2-City-CSV/download?suffix=zip"
