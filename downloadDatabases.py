@@ -21,14 +21,14 @@ base64_credentials = base64.b64encode(credentials.encode("utf-8"))
 print(base64_credentials)
 
 # Convert the bytes to a string (if needed)
-encoded_credentials_string = encoded_credentials.decode("utf-8")
+encoded_credentials_string = base64_credentials.decode("utf-8")
 print(encoded_credentials_string)
 
 
 # URL with basic auth
 url = f"https://download.maxmind.com/geoip/databases/GeoLite2-City-CSV/download?suffix=zip"
 request = urllib.request.Request(url)
-request.add_header('Authorization', f'Basic {base64_credentials}')
+request.add_header('Authorization', f'Basic {encoded_credentials_string}')
 
 # Download the file
 with urllib.request.urlopen(request) as response, open(ZIP_FILENAME, 'wb') as out_file:
