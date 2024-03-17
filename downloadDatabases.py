@@ -22,7 +22,7 @@ url = "https://download.maxmind.com/geoip/databases/GeoIP2-City-CSV/download?suf
 # Make a GET request with authentication
 response = requests.get(url, auth=(username, password))
 
-print("Failed to download the file. Status code:", response.status_code)
+print("Status code:", response.status_code)
 
 # Get the filename from the response headers
 filename = response.headers.get("content-disposition").split("filename=")[-1]
