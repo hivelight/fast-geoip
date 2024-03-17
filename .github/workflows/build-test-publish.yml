@@ -72,6 +72,7 @@ jobs:
         run: python downloadDatabases.py
         env:
           MAXMIND_LICENSE_KEY: ${{ secrets.MAXMIND_LICENSE_KEY }}
+          ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
       - name: Build data structures
         run: |
           python processGeoIpCsv.py
