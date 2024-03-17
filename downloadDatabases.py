@@ -12,8 +12,8 @@ def rmtree(directory):
 
 
 # Basic Authentication credentials
-username =  os.environ["ACCOUNT_ID"]
-password =  os.environ["MAXMIND_LICENSE_KEY"]
+username = os.environ["ACCOUNT_ID"]
+password = os.environ["MAXMIND_LICENSE_KEY"]
 
 # Encode username and password in base64
 credentials = f"{username}:{password}".encode('ascii')
