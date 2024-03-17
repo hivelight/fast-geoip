@@ -18,8 +18,12 @@ password = os.environ["MAXMIND_LICENSE_KEY"]
 # Encode username and password in base64
 credentials = f"{username}:{password}"
 base64_credentials = base64.b64encode(credentials.encode("utf-8"))
+print(base64_credentials)
 
+# Convert the bytes to a string (if needed)
+encoded_credentials_string = encoded_credentials.decode("utf-8")
 print(encoded_credentials_string)
+
 
 # URL with basic auth
 url = f"https://download.maxmind.com/geoip/databases/GeoLite2-City-CSV/download?suffix=zip"
