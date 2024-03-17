@@ -68,6 +68,8 @@ jobs:
       - run: npm ci
       - name: Build typescript files
         run: npm run build
+      - name: Install requests
+        run: pip install requests
       - name: Download csv databases
         run: python downloadDatabases.py
         env:
