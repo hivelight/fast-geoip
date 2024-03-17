@@ -22,15 +22,14 @@ url = "https://download.maxmind.com/geoip/databases/GeoIP2-City-CSV/download?suf
 # Make a GET request with authentication
 response = requests.get(url, auth=(username, password))
 
+print("Failed to download the file. Status code:", response.status_code)
 
-    print("Failed to download the file. Status code:", response.status_code)
+# Get the filename from the response headers
+filename = response.headers.get("content-disposition").split("filename=")[-1]
 
-    # Get the filename from the response headers
-    filename = response.headers.get("content-disposition").split("filename=")[-1]
-
-    # Save the file
-    with open(filename, "wb") as f:
-        f.write(response.content)
+# Save the file
+with open(filename, "wb") as f:
+    f.write(response.content)
 
 # Extract the downloaded zip file
 with zipfile.ZipFile(filename, 'r') as zip_ref:
