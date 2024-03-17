@@ -17,8 +17,8 @@ username = os.environ["ACCOUNT_ID"]
 password = os.environ["MAXMIND_LICENSE_KEY"]
 
 # URL to download the file
-url = "https://download.maxmind.com/geoip/databases/GeoIP2-City-CSV/download?suffix=zip"
 # url = "https://download.maxmind.com/geoip/databases/GeoIP2-City-CSV/download?suffix=zip"
+url = "https://download.maxmind.com/geoip/databases/GeoLite2-City-CSV/download?suffix=zip"
 
 # Make a GET request with authentication
 response = requests.get(url, auth=(username, password))
