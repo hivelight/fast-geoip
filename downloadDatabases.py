@@ -2,22 +2,16 @@ import os, zipfile, glob, shutil
 import processGeoIpCsv as geoip
 import requests
 
-
-ZIP_FILENAME = "geolite.zip"
 TEMPORAL_EXTRACTED_DIR = "geoip"
 
 def rmtree(directory):
     shutil.rmtree(directory, ignore_errors=True)
-
-# urllib.request.urlretrieve ("https://geoip.maxmind.com/app/geoip_download?edition_id=GeoLite2-City-CSV&suffix=zip&license_key=" + os.environ["MAXMIND_LICENSE_KEY"], ZIP_FILENAME)
-
 
 # Basic Authentication credentials
 username = os.environ["ACCOUNT_ID"]
 password = os.environ["MAXMIND_LICENSE_KEY"]
 
 # URL to download the file
-# url = "https://download.maxmind.com/geoip/databases/GeoIP2-City-CSV/download?suffix=zip"
 url = "https://download.maxmind.com/geoip/databases/GeoLite2-City-CSV/download?suffix=zip"
 
 # Make a GET request with authentication
